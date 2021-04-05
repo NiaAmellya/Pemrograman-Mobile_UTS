@@ -2,29 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:uts/models/item.dart';
 
 class HomePage extends StatelessWidget {
-  final List<Item> items = [
-    Item(
+  final List<ItemHome> items = [
+    ItemHome(
       aroma: 'Powdery',
     ),
-    Item(
+    ItemHome(
       aroma: 'Floral',
     ),
-    Item(
+    ItemHome(
       aroma: 'Fruity',
     ),
-    Item(
+    ItemHome(
       aroma: 'Woody',
     ),
-    Item(
+    ItemHome(
       aroma: 'Sweet',
     ),
-    Item(
+    ItemHome(
       aroma: 'Musk',
     ),
-    Item(
+    ItemHome(
       aroma: 'Oceanic',
     ),
-    Item(
+    ItemHome(
       aroma: 'Green',
     ),
   ];
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
                 final item = items[index];
                 return InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, '/item', arguments: item);
+                    Navigator.pushNamed(context, '/home', arguments: item);
                   },
                   child: Card(
                     child: Container(
