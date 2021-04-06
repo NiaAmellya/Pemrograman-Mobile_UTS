@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:uts/models/item_referensi.dart';
+import 'package:uts/models/item_custome.dart';
 
-class EntryForm extends StatefulWidget {
-  final Item item;
-  EntryForm(this.item);
+class EntryFormCus1 extends StatefulWidget {
+  final Custom custom;
+  EntryFormCus1(this.custom);
   @override
-  EntryFormState createState() => EntryFormState(this.item);
+  EntryFormCus1State createState() => EntryFormCus1State(this.custom);
 }
 
 //class controller
-class EntryFormState extends State<EntryForm> {
-  Item item;
-  EntryFormState(this.item);
-  TextEditingController kodeController = TextEditingController();
-  TextEditingController jenisController = TextEditingController();
-  TextEditingController merkController = TextEditingController();
-  TextEditingController stokController = TextEditingController();
-  TextEditingController hargaController = TextEditingController();
+class EntryFormCus1State extends State<EntryFormCus1> {
+  Custom custom;
+  EntryFormCus1State(this.custom);
+  TextEditingController pemesanController = TextEditingController();
+  TextEditingController bahan1Controller = TextEditingController();
+  TextEditingController ukuran1Controller = TextEditingController();
+  TextEditingController bahan2Controller = TextEditingController();
+  TextEditingController ukuran2Controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     //kondisi
-    if (item != null) {
-      kodeController.text = item.kode.toString();
-      jenisController.text = item.jenis;
-      merkController.text = item.merk;
-      stokController.text = item.stok.toString();
-      hargaController.text = item.harga.toString();
+    if (custom != null) {
+      pemesanController.text = custom.pemesan;
+      bahan1Controller.text = custom.bahan1;
+      ukuran1Controller.text = custom.ukuran1.toString();
+      bahan2Controller.text = custom.bahan2;
+      ukuran2Controller.text = custom.ukuran2.toString();
     }
     //rubah
     return Scaffold(
         appBar: AppBar(
-          title: item == null ? Text('Tambah') : Text('Ubah'),
+          title: custom == null ? Text('Tambah') : Text('Ubah'),
           leading: Icon(Icons.keyboard_arrow_left),
         ),
         body: Padding(
@@ -41,10 +41,10 @@ class EntryFormState extends State<EntryForm> {
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
-                  controller: kodeController,
+                  controller: pemesanController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                    labelText: 'Kode',
+                    labelText: 'Nama Pemesan',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -58,10 +58,10 @@ class EntryFormState extends State<EntryForm> {
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
-                  controller: jenisController,
+                  controller: bahan1Controller,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                    labelText: 'Jenis',
+                    labelText: 'Bahan 1',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -74,10 +74,26 @@ class EntryFormState extends State<EntryForm> {
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
-                  controller: merkController,
+                  controller: ukuran1Controller,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: 'Ukuran 1 dalam ml',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    //
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                child: TextField(
+                  controller: bahan2Controller,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                    labelText: 'Merk',
+                    labelText: 'Bahan 2',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -90,26 +106,10 @@ class EntryFormState extends State<EntryForm> {
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
-                  controller: stokController,
+                  controller: ukuran2Controller,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    labelText: 'Stok',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                  ),
-                  onChanged: (value) {
-                    //
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                child: TextField(
-                  controller: hargaController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Harga',
+                    labelText: 'Ukuran 2 dalam ml',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -134,25 +134,24 @@ class EntryFormState extends State<EntryForm> {
                           textScaleFactor: 1.5,
                         ),
                         onPressed: () {
-                          if (item == null) {
+                          if (custom == null) {
                             // tambah data
-                            item = Item(
-                              int.parse(kodeController.text),
-                              jenisController.text,
-                              merkController.text,
-                              int.parse(stokController.text),
-                              int.parse(hargaController.text),
-                            );
+                            custom = Custom(
+                                pemesanController.text,
+                                bahan1Controller.text,
+                                int.parse(ukuran1Controller.text),
+                                bahan2Controller.text,
+                                int.parse(ukuran2Controller.text));
                           } else {
                             // ubah data
-                            item.kode = int.parse(kodeController.text);
-                            item.jenis = jenisController.text;
-                            item.merk = merkController.text;
-                            item.stok = int.parse(stokController.text);
-                            item.harga = int.parse(hargaController.text);
+                            custom.pemesan = pemesanController.text;
+                            custom.bahan1 = bahan1Controller.text;
+                            custom.ukuran1 = int.parse(ukuran1Controller.text);
+                            custom.bahan2 = bahan2Controller.text;
+                            custom.ukuran2 = int.parse(ukuran2Controller.text);
                           }
                           // kembali ke layar sebelumnya dengan membawa objek item
-                          Navigator.pop(context, item);
+                          Navigator.pop(context, custom);
                         },
                       ),
                     ),

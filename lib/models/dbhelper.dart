@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:uts/models/item_custome.dart';
 import 'package:uts/models/item_referensi.dart';
 
 class DbHelper {
@@ -22,53 +23,104 @@ class DbHelper {
 
   //buat tabel baru dengan nama item
   void _createDb(Database db, int version) async {
-    await db.execute('''
+    Batch batch = db.batch();
+    //tabel Rekomendasi
+    batch.execute('''
     CREATE TABLE item (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     kode INTEGER,
     jenis TEXT,
     merk TEXT,
     stok INTEGER,
-    harga INTEGER,
+    harga INTEGER
     )
     ''');
+    // tabel Custom
+    batch.execute('''CREATE TABLE custom (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pemesan TEXT,
+    bahan1 TEXT,
+    ukuran1 INTEGER,
+    bahan2 TEXT,
+    ukuran2 INTEGER
+          )''');
+    List<dynamic> res = await batch.commit();
   }
 
-  //select databases
-  Future<List<Map<String, dynamic>>> select() async {
+  //select databases tabel Rekomendasi
+  Future<List<Map<String, dynamic>>> selectItem() async {
     Database db = await this.initDb();
-    var mapList = await db.query('item', orderBy: 'nama');
+    var mapList = await db.query('item', orderBy: 'id');
     return mapList;
   }
 
-  //create databases
-  Future<int> insert(Item object) async {
+  //select databases tabel Custom
+  Future<List<Map<String, dynamic>>> selectCustom() async {
     Database db = await this.initDb();
-    int count = await db.insert('item', object.toMap());
+    var mapList = await db.query('custom', orderBy: 'id');
+    return mapList;
+  }
+
+  // insert data tabel Rekomendasi
+  Future<int> insertItem(Item object) async {
+    Database db = await this.initDb();
+    int count = await db.insert('Item', object.toMap());
     return count;
   }
 
-//update databases
-  Future<int> update(Item object) async {
+  // insert data tabel Custom
+  Future<int> insertCustom(Custom object) async {
+    Database db = await this.initDb();
+    int count = await db.insert('custom', object.toMap());
+    return count;
+  }
+
+//update databases tabel rekomendasi
+  Future<int> updateItem(Item object) async {
     Database db = await this.initDb();
     int count = await db
         .update('item', object.toMap(), where: 'id=?', whereArgs: [object.id]);
     return count;
   }
 
-//delete databases
-  Future<int> delete(int id) async {
+  //update databases tabel Custom
+  Future<int> updateCustom(Custom object) async {
+    Database db = await this.initDb();
+    int count = await db.update('custom', object.toMap(),
+        where: 'id=?', whereArgs: [object.id]);
+    return count;
+  }
+
+//delete databases tabel Rekomendasi
+  Future<int> deleteItem(int id) async {
     Database db = await this.initDb();
     int count = await db.delete('item', where: 'id=?', whereArgs: [id]);
     return count;
   }
 
-  Future<List<Item>> getItemList() async {
-    var itemMapList = await select();
+//delete databases tabel Custom
+  Future<int> deleteCustom(int id) async {
+    Database db = await this.initDb();
+    int count = await db.delete('custom', where: 'id=?', whereArgs: [id]);
+    return count;
+  }
+
+  Future<List<Item>> getItemListItem() async {
+    var itemMapList = await selectItem();
     int count = itemMapList.length;
     List<Item> itemList = List<Item>();
     for (int i = 0; i < count; i++) {
       itemList.add(Item.fromMap(itemMapList[i]));
+    }
+    return itemList;
+  }
+
+  Future<List<Custom>> getItemListCustom() async {
+    var itemMapList = await selectCustom();
+    int count = itemMapList.length;
+    List<Custom> itemList = List<Custom>();
+    for (int i = 0; i < count; i++) {
+      itemList.add(Custom.fromMap(itemMapList[i]));
     }
     return itemList;
   }

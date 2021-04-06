@@ -2,18 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uts/models/dbhelper.dart';
 import 'package:uts/models/item_referensi.dart';
-import 'package:uts/pages/entryform1.dart';
+import 'package:uts/pages/entryformrecom1.dart';
 import 'dart:async';
 
-class Home extends StatefulWidget {
+class Recommendation1 extends StatefulWidget {
   @override
-  HomeState createState() => HomeState();
+  Recommendation1State createState() => Recommendation1State();
 }
 
-class HomeState extends State<Home> {
+class Recommendation1State extends State<Recommendation1> {
   DbHelper dbHelper = DbHelper();
   int count = 0;
   List<Item> itemList;
+  @override
+  void initState() {
+    super.initState();
+    updateListView();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class HomeState extends State<Home> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Recommendation & Custom'),
+        title: Text('Recommendation Parfume'),
       ),
       body: Column(children: [
         Expanded(
@@ -32,18 +37,22 @@ class HomeState extends State<Home> {
           alignment: Alignment.bottomCenter,
           child: SizedBox(
             width: double.infinity,
-            child: RaisedButton(
-              child: Text("Tambah Item"),
-              onPressed: () async {
-                var item = await navigateToEntryForm(context, null);
-                if (item != null) {
-                  //TODO 2 Panggil Fungsi untuk Insert ke DB
-                  int result = await dbHelper.insert(item);
-                  if (result > 0) {
-                    updateListView();
-                  }
-                }
-              },
+            child: Column(
+              children: [
+                RaisedButton(
+                  child: Text("Tambah Item Recommedation"),
+                  onPressed: () async {
+                    var item = await navigateToEntryForm(context, null);
+                    if (item != null) {
+                      //TODO 2 Panggil Fungsi untuk Insert ke DB
+                      int result = await dbHelper.insertItem(item);
+                      if (result > 0) {
+                        updateListView();
+                      }
+                    }
+                  },
+                ),
+              ],
             ),
           ),
         ),
@@ -54,7 +63,7 @@ class HomeState extends State<Home> {
   Future<Item> navigateToEntryForm(BuildContext context, Item item) async {
     var result = await Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext context) {
-      return EntryForm(item);
+      return EntryFormRecom1(item);
     }));
     return result;
   }
@@ -89,7 +98,7 @@ class HomeState extends State<Home> {
               onTap: () async {
                 //TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
                 int id = this.itemList[index].id; // get id from sqlite database
-                await dbHelper.delete(id); // delete by id from table
+                await dbHelper.deleteItem(id); // delete by id from table
                 itemList.removeAt(index); // delete by index from list
                 updateListView();
               },
@@ -99,7 +108,7 @@ class HomeState extends State<Home> {
                   await navigateToEntryForm(context, this.itemList[index]);
               //TODO 4 Panggil Fungsi untuk Edit data
               if (item != null) {
-                int result = await dbHelper.update(item);
+                int result = await dbHelper.updateItem(item);
                 if (result > 0) {
                   updateListView();
                 }
@@ -116,7 +125,7 @@ class HomeState extends State<Home> {
     final Future<Database> dbFuture = dbHelper.initDb();
     dbFuture.then((database) {
       //TODO 1 Select data dari DB
-      Future<List<Item>> itemListFuture = dbHelper.getItemList();
+      Future<List<Item>> itemListFuture = dbHelper.getItemListItem();
       itemListFuture.then((itemList) {
         setState(() {
           this.itemList = itemList;

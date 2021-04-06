@@ -18,13 +18,13 @@ class Item {
   get harga => this._harga;
   set harga(value) => this._harga = value;
 
-  get stok => _stok;
+  get stok => this._stok;
   set stok(value) => this._stok = value;
 
   get kode => this._kode;
   set kode(value) => this._kode = value;
 
-  get bahan => _bahan;
+  get bahan => this._bahan;
   set bahan(String value) => this._bahan = value;
 
   Item(this._kode, this._jenis, this._merk, this._stok, this._harga);
