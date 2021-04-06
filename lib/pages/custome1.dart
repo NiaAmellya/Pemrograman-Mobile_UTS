@@ -78,10 +78,16 @@ class Custome1State extends State<Custome1> {
         return Card(
           color: Colors.white,
           elevation: 2.0,
+          margin: EdgeInsets.all(8),
           child: ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.red,
-              child: Icon(Icons.ad_units),
+            leading: Column(
+              children: [
+                Text('CUST ID'),
+                Text(
+                  this.itemList[index].id.toString(),
+                  style: TextStyle(fontSize: 25),
+                ),
+              ],
             ),
             title: Text(
               this.itemList[index].pemesan,
@@ -92,11 +98,11 @@ class Custome1State extends State<Custome1> {
               Text('Bahan 1     : ' + this.itemList[index].bahan1.toString()),
               Text('Ukuran 1    : ' +
                   this.itemList[index].ukuran1.toString() +
-                  'ml'),
+                  ' ml'),
               Text('Bahan 2     : ' + this.itemList[index].bahan2.toString()),
               Text('Ukuran 2    : ' +
                   this.itemList[index].ukuran2.toString() +
-                  'ml'),
+                  ' ml'),
             ]),
             trailing: GestureDetector(
               child: Icon(Icons.delete),

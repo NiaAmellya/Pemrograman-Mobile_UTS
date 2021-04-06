@@ -16,6 +16,7 @@ class HomeFloral extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Image.asset('assets/images/avatar.jpg'),
             Container(
               height: 50,
               width: 250,

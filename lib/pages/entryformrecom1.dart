@@ -42,7 +42,7 @@ class EntryFormRecom1State extends State<EntryFormRecom1> {
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
                   controller: kodeController,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     labelText: 'Kode',
                     border: OutlineInputBorder(

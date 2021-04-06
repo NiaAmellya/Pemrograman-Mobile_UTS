@@ -78,7 +78,7 @@ class Recommendation1State extends State<Recommendation1> {
           elevation: 2.0,
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.red,
+              backgroundColor: Colors.white,
               child: Icon(Icons.ad_units),
             ),
             title: Text(
