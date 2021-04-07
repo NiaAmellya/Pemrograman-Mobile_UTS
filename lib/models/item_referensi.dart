@@ -1,4 +1,5 @@
 class Item {
+//variabel
   String _merk;
   String _jenis;
   int _id;
@@ -7,6 +8,7 @@ class Item {
   int _kode;
   String _bahan;
 
+// mengambil dan mengembalikan nilai yang dimasukkan ke constructor per variabel
   get id => _id;
 
   get merk => this._merk;
@@ -27,7 +29,10 @@ class Item {
   get bahan => this._bahan;
   set bahan(String value) => this._bahan = value;
 
+// constructor untuk menyimpan hasil inputan
   Item(this._kode, this._jenis, this._merk, this._stok, this._harga);
+//constructor dengan namba tambahan agar constructor pertama tidak error
+//jika dipanggil akan mengambil data dari sql yang berbentuk Map, setelah itu disimpan kembali berbentuk variabel
   Item.fromMap(Map<String, dynamic> map) {
     this._id = map['id'];
     this._kode = map['kode'];
@@ -36,6 +41,9 @@ class Item {
     this._stok = map['stok'];
     this._harga = map['harga'];
   }
+
+  //metod untuk memasukkan setter dan getter ke dalam map
+//untuk nantinya  dipanggila lagi untuk membuat method update dan insert
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = Map<String, dynamic>();
     map['id'] = this._id;

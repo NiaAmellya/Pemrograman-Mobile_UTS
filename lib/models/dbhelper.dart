@@ -105,6 +105,7 @@ class DbHelper {
     return count;
   }
 
+// membuat list item pada tabel rekomendasi
   Future<List<Item>> getItemListItem() async {
     var itemMapList = await selectItem();
     int count = itemMapList.length;
@@ -115,6 +116,7 @@ class DbHelper {
     return itemList;
   }
 
+//membuat list item pada tabel custome
   Future<List<Custom>> getItemListCustom() async {
     var itemMapList = await selectCustom();
     int count = itemMapList.length;
