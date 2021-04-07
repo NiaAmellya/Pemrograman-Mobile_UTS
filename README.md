@@ -1,6 +1,31 @@
 # uts
 
-A new Flutter project.
+Hasil Program yang telah dibuat untuk memenuhi nilai UTS
+
+  1. Halaman Home
+  
+      ![plot](./img/home.PNG)
+  
+  
+  2. Halaman Rekomendasi
+    
+      ![plot](./img/rekom.PNG)
+    
+    
+  3. Halaman Tambah Item Rekomendasi
+  
+      ![plot](./img/tambahrekom.PNG)
+    
+    
+  4. Halaman Custome
+   
+      ![plot](./img/custom.PNG)
+  
+  
+  5. Halaman Tambah Item Custom
+   
+      ![plot](./img/tambahcustom.PNG)
+
 
 ## Getting Started
 
