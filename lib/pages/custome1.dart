@@ -3,7 +3,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:uts/models/dbhelper.dart';
 import 'package:uts/models/item_custome.dart';
 import 'package:uts/pages/entryformcus1.dart';
-import 'package:uts/pages/entryformrecom1.dart';
 import 'dart:async';
 
 class Custome1 extends StatefulWidget {
@@ -34,6 +33,7 @@ class Custome1State extends State<Custome1> {
         Expanded(
           child: createListView(),
         ),
+        //button untuk menambah item pada custome
         Container(
           alignment: Alignment.bottomCenter,
           child: SizedBox(
@@ -41,7 +41,7 @@ class Custome1State extends State<Custome1> {
             child: Column(
               children: [
                 RaisedButton(
-                  child: Text("Tambah Item Custom"),
+                  child: Text("Tambah Item Custome"),
                   onPressed: () async {
                     var item = await navigateToEntryForm(context, null);
                     if (item != null) {
@@ -80,6 +80,7 @@ class Custome1State extends State<Custome1> {
           elevation: 2.0,
           margin: EdgeInsets.all(8),
           child: ListTile(
+            //pengganti icon pada sisi kiri hasil print dari fom
             leading: Column(
               children: [
                 Text('CUST ID'),
@@ -93,6 +94,7 @@ class Custome1State extends State<Custome1> {
               this.itemList[index].pemesan,
               style: textStyle,
             ),
+            //untuk menampilkan atau mencetak hasil dari pengisian fom
             subtitle:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text('Bahan 1     : ' + this.itemList[index].bahan1.toString()),
@@ -124,7 +126,6 @@ class Custome1State extends State<Custome1> {
                   updateListView();
                 }
               }
-              //TODO 4 Panggil Fungsi untuk Edit data
             },
           ),
         );

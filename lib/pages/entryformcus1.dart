@@ -54,7 +54,7 @@ class EntryFormCus1State extends State<EntryFormCus1> {
                   },
                 ),
               ),
-              // harga
+              // bahan1
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
@@ -66,27 +66,26 @@ class EntryFormCus1State extends State<EntryFormCus1> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onChanged: (value) {
-                    //
-                  },
+                  onChanged: (value) {},
                 ),
               ),
+              //ukuran1
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
                   controller: ukuran1Controller,
-                  keyboardType: TextInputType.number,
+                  keyboardType:
+                      TextInputType.number, //keyboard inputan hanya angka
                   decoration: InputDecoration(
                     labelText: 'Ukuran 1 dalam ml',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onChanged: (value) {
-                    //
-                  },
+                  onChanged: (value) {},
                 ),
               ),
+              //bahan2
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
@@ -98,11 +97,10 @@ class EntryFormCus1State extends State<EntryFormCus1> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onChanged: (value) {
-                    //
-                  },
+                  onChanged: (value) {},
                 ),
               ),
+              //ukuran2
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
@@ -114,9 +112,7 @@ class EntryFormCus1State extends State<EntryFormCus1> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onChanged: (value) {
-                    //
-                  },
+                  onChanged: (value) {},
                 ),
               ),
               // tombol button

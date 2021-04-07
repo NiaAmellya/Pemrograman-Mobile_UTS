@@ -17,6 +17,7 @@ class HomeFloral extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Image.asset('assets/images/avatar.jpg'),
+            //button recomendation
             Container(
               height: 50,
               width: 250,
@@ -40,6 +41,7 @@ class HomeFloral extends StatelessWidget {
                 },
               ),
             ),
+            //button custome
             Container(
               height: 50,
               width: 250,

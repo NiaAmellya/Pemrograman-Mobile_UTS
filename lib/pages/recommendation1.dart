@@ -33,6 +33,7 @@ class Recommendation1State extends State<Recommendation1> {
         Expanded(
           child: createListView(),
         ),
+        //button untuk menambah item pada recommendation
         Container(
           alignment: Alignment.bottomCenter,
           child: SizedBox(
@@ -85,6 +86,7 @@ class Recommendation1State extends State<Recommendation1> {
               this.itemList[index].merk,
               style: textStyle,
             ),
+            //mencetak hasil pengisian form
             subtitle:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text('Kode   : ' + this.itemList[index].kode.toString()),
@@ -113,7 +115,6 @@ class Recommendation1State extends State<Recommendation1> {
                   updateListView();
                 }
               }
-              //TODO 4 Panggil Fungsi untuk Edit data
             },
           ),
         );
