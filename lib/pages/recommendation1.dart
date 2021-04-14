@@ -14,6 +14,15 @@ class Recommendation1State extends State<Recommendation1> {
   DbHelper dbHelper = DbHelper();
   int count = 0;
   List<Item> itemList;
+  String _jenis;
+  List _listJenis = ["Eau De Parfum", "Eau De Cologne", "Eau De Toilette"];
+
+  // void dropdownOnChanged(String changeValue) {
+  //   setState(() {
+  //     _newValue = changeValue;
+  //   });
+  // }
+
   @override
   void initState() {
     super.initState();
@@ -41,7 +50,7 @@ class Recommendation1State extends State<Recommendation1> {
             child: Column(
               children: [
                 RaisedButton(
-                  child: Text("Tambah Item Recommedation"),
+                  child: Text("Tambah Item Recommendation"),
                   onPressed: () async {
                     var item = await navigateToEntryForm(context, null);
                     if (item != null) {
